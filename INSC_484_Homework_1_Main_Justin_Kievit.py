@@ -1,0 +1,49 @@
+# Before anything else, I separated my code into what each file does.
+# For example, this file is named "Main" because it is where the main
+# code is being executed. The second file is named "Choices", because
+# that is where the user chooses which game to play. I decided to name my
+# functions after which game they apply to. For example, the dice functions
+# are named according to which die the user chooses. Whichever die the user chooses
+# is whichever function will be executed. This makes for an easy understanding of which
+# function does what, and easier for a person who did not write this code to understand
+# which function is doing what. The same goes for the joker functions. They are named after what
+# the user chooses. I intended to have a separation of concerns, so rather than having my
+# functions inside the "Main" file, I put them in a different file. This makes for a less cluttered
+# main file. I also decided to make just one "if" statement, with more "if" statements inside of it. The main "if"
+# block contains an execution for whatever the user chooses. The other "if" statements will
+# be executed dependent of whether the user chooses to take jokers out, or choose a
+# specific die.
+
+from hw1functions import flip, six_die, eight_die, ten_die, twelve_die, nojokers, jokers
+
+while True:
+    print(f'Choose a game to play:\n1.) Coin Flip\n2.) Dice Roll\n3.) Card Draw\n4.) Exit ')
+    choice = input("Enter the number to play the game: ")
+    if choice == "1":
+        n = flip()
+        print(f"Flipping...\n{n}")
+    elif choice == "2":
+        side = input("Would you like a 6 sided, 8 sided, 10 sided, or 12 sided dice? ")
+        if side == "6":
+                print(f"Rolling...\n{six_die()}!")
+        elif side == "8":
+                print(f"Rolling...\n{eight_die()}!")
+        elif side == "10":
+                print(f"Rolling...\n{ten_die()}!")
+        elif side == "12":
+                print(f"Rolling...\n{twelve_die()}!")
+        else:
+            print("Invalid entry. Returning to menu...")
+    elif choice == "3":
+        joker_input = input("Would you like to remove jokers? Enter Y/N ")
+        if joker_input == "Y" or joker_input == "y":
+            print(f"Dealing...\n{nojokers()}!")
+        elif joker_input == "N" or joker_input == "n":
+            print(f"Dealing...\n{jokers()}!")
+        else:
+            print("Invalid entry. Returning to menu...")
+    elif choice == "4":
+        print("Exiting...")
+        break
+    else:
+        print("Please enter 1, 2, 3, or 4. ")
