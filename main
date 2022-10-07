@@ -14,7 +14,7 @@
 # be executed dependent of whether the user chooses to take jokers out, or choose a
 # specific die.
 
-from hw1functions import flip, six_die, eight_die, ten_die, twelve_die, nojokers, jokers
+from choices import flip, six_die, eight_die, ten_die, twelve_die, nojokers, jokers
 
 while True:
     print(f'Choose a game to play:\n1.) Coin Flip\n2.) Dice Roll\n3.) Card Draw\n4.) Exit ')
