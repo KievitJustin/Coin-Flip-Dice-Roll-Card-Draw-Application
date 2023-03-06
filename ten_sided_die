@@ -1,0 +1,75 @@
+import random
+
+def tendie():
+    return random.randint(1, 10)
+
+
+def bets_choice_mapping(bets):
+    bets_to_make = []
+    for bet in bets:
+        if bet == "1":
+            bets_to_make.append(match)
+        elif bet == "2":
+            bets_to_make.append(over)
+        elif bet == "3":
+            bets_to_make.append(under)
+    return bets_to_make
+
+def match(dice_roll, number):
+    if dice_roll == int(number):
+        return 0
+    else:
+        return 1
+
+def over(dice_roll, number):
+    if dice_roll > int(number):
+        return 0
+    else:
+        return 1
+
+def under(dice_roll, number):
+    if dice_roll < int(number):
+        return 0
+    else:
+        return 1
+
+
+def ten_dice_one_bet_parlay(bets, money, numbers):
+    bets = bets_choice_mapping(bets)
+    dice_roll = tendie()
+    hit_check = 0
+    bets_paired_with_numbers = zip(bets, numbers)
+    for bet, number in bets_paired_with_numbers:
+        hit_check += bet(dice_roll, number)
+
+    if hit_check == 0:
+        return (f'\nYou win! {money * 10}\n')
+    else:
+        return (f'\nYou lose! {money *-1} \n')
+
+
+def ten_dice_two_bet_parlay(bets, money, numbers):
+    bets = bets_choice_mapping(bets)
+    dice_roll = tendie()
+    hit_check = 0
+    bets_paired_with_numbers = zip(bets, numbers)
+    for bet, number in bets_paired_with_numbers:
+        hit_check += bet(dice_roll, number)
+
+    if hit_check == 0:
+        return (f'\nYou win! {money * 20}\n')
+    else:
+        return (f'\nYou lose! {money *-1} \n')
+
+def ten_dice_three_bet_parlay(bets, money, numbers):
+    bets = bets_choice_mapping(bets)
+    dice_roll = tendie()
+    hit_check = 0
+    bets_paired_with_numbers = zip(bets, numbers)
+    for bet, number in bets_paired_with_numbers:
+        hit_check += bet(dice_roll, number)
+
+    if hit_check == 0:
+        return (f'\nYou win! {money * 30}\n')
+    else:
+        return (f'\nYou lose! {money *-1} \n')
