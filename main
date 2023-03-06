@@ -1,33 +1,128 @@
-from choices import flip, six_die, eight_die, ten_die, twelve_die, nojokers, jokers
+from coin import flip, coin_bet
+from card import jokers_removed, jokers_not_removed
+
+from six_sided_die import sixdie, six_dice_one_bet_parlay, six_dice_two_bet_parlay, six_dice_three_bet_parlay
+from eight_sided_die import eightdie, eight_dice_one_bet_parlay, eight_dice_two_bet_parlay, eight_dice_three_bet_parlay
+from ten_sided_die import tendie, ten_dice_one_bet_parlay, ten_dice_two_bet_parlay, ten_dice_three_bet_parlay
+from twelve_sided_die import twelvedie, twelve_dice_one_bet_parlay, twelve_dice_two_bet_parlay, twelve_dice_three_bet_parlay
+
+
+print("\nChoose a game to play!")
 
 while True:
-    print(f'Choose a game to play:\n1.) Coin Flip\n2.) Dice Roll\n3.) Card Draw\n4.) Exit ')
-    choice = input("Enter the number to play the game: ")
-    if choice == "1":
+    user_input = input("-------------------\n1. Coin flip\n2. Dice roll\n3. Card draw\n4. Bet \n5. Exit\n-------------------\nYour choice: ")
+    if user_input == "1":
         n = flip()
-        print(f"Flipping...\n{n}")
-    elif choice == "2":
-        side = input("Would you like a 6 sided, 8 sided, 10 sided, or 12 sided dice? ")
-        if side == "6":
-                print(f"Rolling...\n{six_die()}!")
-        elif side == "8":
-                print(f"Rolling...\n{eight_die()}!")
-        elif side == "10":
-                print(f"Rolling...\n{ten_die()}!")
-        elif side == "12":
-                print(f"Rolling...\n{twelve_die()}!")
+        print(f'\n{n}!\n')
+    elif user_input == "2":
+        dice_choice = input("\nWould you like a 6, 8, 10, or 12 sided dice?\nYour choice: (6, 8, 10, 12) ")
+        if dice_choice == "6":
+            n = sixdie()
+            print(f'\n{n}!\n')
+        elif dice_choice == "8":
+            n = eightdie()
+            print(f'\n{n}!\n')
+        elif dice_choice == "10":
+            n = tendie()
+            print(f'\n{n}!\n')
+        elif dice_choice == "12":
+            n = twelvedie()
+            print(f'\n{n}!\n')
         else:
-            print("Invalid entry. Returning to menu...")
-    elif choice == "3":
-        joker_input = input("Would you like to remove jokers? Enter Y/N ")
-        if joker_input == "Y" or joker_input == "y":
-            print(f"Dealing...\n{nojokers()}!")
-        elif joker_input == "N" or joker_input == "n":
-            print(f"Dealing...\n{jokers()}!")
+            print("Choose either a 6, 8, 10, or 12 sided dice. Returning to home screen.\n")
+    elif user_input == "3":
+        card_choice = input("\nWould you like to remove jokers?\nYour choice:  (Y/N) ")
+        if card_choice == "Y" or card_choice == "y":
+            n = jokers_removed()
+            print(f'\n{n}!\n')
+        elif card_choice == "N" or card_choice == "n":
+            n = jokers_not_removed()
+            print(f'\n{n}!\n')
+    elif user_input == "4":
+        bet_choice = input("\nChoose a game to bet on.\n-------------------\n1. Coin flip \n2. Dice roll\n3. Card draw (coming soon)\n-------------------\nYour choice: ")
+        if bet_choice == "1":
+            side_bet = input("\nWould you like to bet on heads or tails?\nYour choice: (Heads : 1, Tails : 2) ")
+            money = float(input("How much would you like to bet: $"))
+            output = coin_bet(money, side_bet)
+            print(output)
+        elif bet_choice == "2":
+            print("Choose a 6, 8, 10, or 12 sided dice. (More sides = Higher winnings...)")
+            dice_side_choice = input("Your choice: ")
+            if dice_side_choice == "6":
+                bets = input('\nChoose a bet: \n-------------------\n1. Match bet\n2. Over bet\n3. Under bet\n-------------------\nYour choice: (separate bets by a comma Ex 1,2) ').split(",")
+                if len(bets) == 1:
+                    money = float(input("How much would you like to spend? $"))
+                    nums_to_bet_on = input("Enter the numbers you would like to bet on: ").split(",")
+                    output = six_dice_one_bet_parlay(bets, money, nums_to_bet_on)
+                    print(output)
+                elif len(bets) == 2:
+                    money = float(input("How much would you like to spend? $"))
+                    nums_to_bet_on = input("Enter the numbers you would like to bet on: ").split(",")
+                    output = six_dice_two_bet_parlay(bets, money, nums_to_bet_on)
+                    print(output)
+                elif len(bets) == 3:
+                    money = float(input("How much would you like to spend? $"))
+                    nums_to_bet_on = input("Enter the numbers you would like to bet on: ").split(",")
+                    output = six_dice_three_bet_parlay(bets, money, nums_to_bet_on)
+                    print(output)
+            elif dice_side_choice == "8":
+                bets = input('\nChoose a bet: \n-------------------\n1. Match bet\n2. Over bet\n3. Under bet\n-------------------\nYour choice: (separate bets by a comma Ex 1,2) ').split(",")
+                if len(bets) == 1:
+                    money = float(input("How much would you like to spend? $"))
+                    nums_to_bet_on = input("Enter the numbers you would like to bet on: ").split(",")
+                    output = eight_dice_one_bet_parlay(bets, money, nums_to_bet_on)
+                    print(output)
+                elif len(bets) == 2:
+                    money = float(input("How much would you like to spend? $"))
+                    nums_to_bet_on = input("Enter the numbers you would like to bet on: ").split(",")
+                    output = eight_dice_two_bet_parlay(bets, money, nums_to_bet_on)
+                    print(output)
+                elif len(bets) == 3:
+                    money = float(input("How much would you like to spend? $"))
+                    nums_to_bet_on = input("Enter the numbers you would like to bet on: ").split(",")
+                    output = eight_dice_three_bet_parlay(bets, money, nums_to_bet_on)
+                    print(output)
+            elif dice_side_choice == "10":
+                bets = input('\nChoose a bet: \n-------------------\n1. Match bet\n2. Over bet\n3. Under bet\n-------------------\nYour choice: (separate bets by a comma Ex 1,2) ').split(",")
+                if len(bets) == 1:
+                    money = float(input("How much would you like to spend? $"))
+                    nums_to_bet_on = input("Enter the numbers you would like to bet on: ").split(",")
+                    output = ten_dice_one_bet_parlay(bets, money, nums_to_bet_on)
+                    print(output)
+                elif len(bets) == 2:
+                    money = float(input("How much would you like to spend? $"))
+                    nums_to_bet_on = input("Enter the numbers you would like to bet on: ").split(",")
+                    output = ten_dice_two_bet_parlay(bets, money, nums_to_bet_on)
+                    print(output)
+                elif len(bets) == 3:
+                    money = float(input("How much would you like to spend? $"))
+                    nums_to_bet_on = input("Enter the numbers you would like to bet on: ").split(",")
+                    output = ten_dice_three_bet_parlay(bets, money, nums_to_bet_on)
+                    print(output)
+            elif dice_side_choice == "12":
+                bets = input('\nChoose a bet: \n-------------------\n1. Match bet\n2. Over bet\n3. Under bet\n-------------------\nYour choice: (separate bets by a comma Ex 1,2) ').split(",")
+                if len(bets) == 1:
+                    money = float(input("How much would you like to spend? $"))
+                    nums_to_bet_on = input("Enter the numbers you would like to bet on: ").split(",")
+                    output = twelve_dice_one_bet_parlay(bets, money, nums_to_bet_on)
+                    print(output)
+                elif len(bets) == 2:
+                    money = float(input("How much would you like to spend? $"))
+                    nums_to_bet_on = input("Enter the numbers you would like to bet on: ").split(",")
+                    output = twelve_dice_two_bet_parlay(bets, money, nums_to_bet_on)
+                    print(output)
+                elif len(bets) == 3:
+                    money = float(input("How much would you like to spend? $"))
+                    nums_to_bet_on = input("Enter the numbers you would like to bet on: ").split(",")
+                    output = twelve_dice_three_bet_parlay(bets, money, nums_to_bet_on)
+                    print(output)
+            else:
+                print("Invalid input. Returning to home")
+        elif bet_choice == "3":
+            print("Coming soon...")
         else:
-            print("Invalid entry. Returning to menu...")
-    elif choice == "4":
-        print("Exiting...")
-        break
+            print("Invalid choice. Returning to home screen. ")
+    elif user_input == "5":
+        exit()
     else:
-        print("Please enter 1, 2, 3, or 4. ")
+        print("Invalid input.")
