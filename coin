@@ -1,0 +1,16 @@
+import random
+
+def flip():
+    sides = ['Heads', 'Tails']
+    return random.choice(sides)
+
+def flip_bet():
+    return random.randint(1, 2)
+
+
+def coin_bet(money, side_bet):
+    n = flip_bet()
+    if int(side_bet) == n:
+        return (f'\nYou win! {money * 2}\n')
+    else:
+        return (f'\nYou lose! {money *-1} \n')
