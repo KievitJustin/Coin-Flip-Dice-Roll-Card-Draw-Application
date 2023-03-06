@@ -9,5 +9,5 @@ into a list that can be used to run a for loop over each bet (1,2,3 is split int
 can execute a function that corresponds to its number). 
 
 When called upon, each function will generate a random number, and if that random number is equal to, over, or under the
-user's number they bet on, either a 0 or 1 is returned into a global list. If the final outcome of that
-global list is 0, all bets will hit. 
+user's number they bet on, either a 0 or 1 is returned to a final list. If the outcome of that
+final list is 0, all bets will hit. 
