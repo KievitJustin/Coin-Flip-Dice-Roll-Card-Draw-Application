@@ -1,0 +1,13 @@
+This application is a combincation of my first Python system and some course code our professor
+wrote during a class project. In order to make this application, I combined my original project with 
+a parlay simulator our professor taught us how to create. I used the idea of first class functions
+which allows them to move around the system as if they were variables. 
+
+If a user wants to place a parlay bet on a dice roll, they are prompted to enter in a number that corresponds
+to either a match, over, or under bet with a comma separting each integer. The comma splits the user input
+into a list that can be used to run a for loop over each bet (1,2,3 is split into [1, 2, 3] so that a for loop
+can execute a function that corresponds to its number). 
+
+When called upon, each function will generate a random number, and if that random number is equal to, over, or under the
+user's number they bet on, either a 0 or 1 is returned into a global list. If the final outcome of that
+global list is 0, all bets will hit. 
