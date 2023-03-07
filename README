@@ -1,13 +1,16 @@
-This application is a combincation of my first Python system and some course code our professor
-wrote during a class project. In order to make this application, I combined my original project with 
-a parlay simulator our professor taught us how to create. I used the idea of first class functions
-which allows them to move around the system as if they were variables. 
+This application is a combincation of an assigment and a parlay simulator my professor wrote. It runs off the 
+use off of first class functions. 
 
-If a user wants to place a parlay bet on a dice roll, they are prompted to enter in a number that corresponds
-to either a match, over, or under bet with a comma separting each integer. The comma splits the user input
-into a list that can be used to run a for loop over each bet (1,2,3 is split into [1, 2, 3] so that a for loop
-can execute a function that corresponds to its number). 
+To play a parlay, a user is promtped to enter the bets they want to play, place an amount of money, and select a number to bet on. 
 
-When called upon, each function will generate a random number, and if that random number is equal to, over, or under the
-user's number they bet on, either a 0 or 1 is returned to a final list. If the outcome of that
-final list is 0, all bets will hit. 
+In this system, a parlay bet is executed by splitting the two input variables and looping through them. The betting input is contained in a 
+variable named "bets" and the and the numbers to bet on variable is contained within a variable named "numbers". "bets" and "numbers" are
+put inside the parameters of a global function. Under the "global_function", a "bets_choice_mapping" function is called, a "dice_roll"
+variable is created, and for loop is executed that determines if the final outcome of the deciding variable "hit_check" is 0. 
+If "hit_check" is 0, the parlay hits. 
+
+As "bets_choice_mapping" is called, a random number is assigned to "dice_roll". "dice_roll" is then put inside the parameters of multiple functions
+along with the original "numbers" variable. "bets_choice_mapping" creates an empty list named "bets_to_make". It runs a for loop, named "bet" that appends 
+the outcome of the functions "dice_roll" and "number" were in to "bets_to_make". 1 or 0 is the only outcome of the functions "dice_roll" and
+"numbers" were in, so "bets_to_make" is either 1 or 0. "bets_to_make" is then added to "hit_check", and if the final outcome is 0, then 
+the parlay hits. 
