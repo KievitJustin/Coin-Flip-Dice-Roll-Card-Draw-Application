@@ -1,4 +1,4 @@
-This application is a combination of an assigment and a parlay simulator my professor wrote. It runs off the use off of first class functions. 
+This is a combination of an assigment and a parlay simulator my professor wrote. 
 
 To play a parlay, a user is promtped to enter the bets they want to play, place an amount of money, and select a number to bet on. 
 
